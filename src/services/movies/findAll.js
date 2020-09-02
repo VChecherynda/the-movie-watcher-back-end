@@ -5,21 +5,18 @@ const Movie = require("../../models/movie");
 const Base = require("../base");
 
 class FindAll extends Base {
-  async validate(data) {
-    const rules = {
-      quantity: ["required"]
-    };
+  async validate() {
+    const rules = true;
 
     const validator = new Livr.Validator(rules);
     this.validator = validator;
-    return validator.validate(data);
+    return validator.validate();
   }
 
-  async execute(cleanData) {
-    const { quantity = "" } = cleanData;
+  async execute() {
+    const allMovies = await Movie.findAll();
 
-    if (quantity === "all") {
-      const allMovies = Movie.findAllEntities();
+    if (allMovies) {
       return { status: 200, data: allMovies };
     }
 

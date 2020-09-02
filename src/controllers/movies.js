@@ -23,10 +23,8 @@ module.exports = {
     renderPromiseAsJson(promise, res);
   },
   findAll: (req, res) => {
-    const { quantity } = req.params;
-
     const service = new FindAll();
-    const promise = service.run({ quantity });
+    const promise = service.run();
 
     renderPromiseAsJson(promise, res);
   },

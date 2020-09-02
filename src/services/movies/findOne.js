@@ -20,9 +20,6 @@ class FindOne extends Base {
 
     const savedMovie = await Movie.findByPk(id);
 
-    console.log("[id]", id);
-    console.log("[savedMovie]", savedMovie);
-
     if (!savedMovie) {
       return { status: 404, data: "There no such movie" };
     }
