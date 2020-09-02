@@ -1,6 +1,7 @@
 const Create = require("../services/movies/create");
 const Delete = require("../services/movies/delete");
-const Find = require("../services/movies/find");
+const FindAll = require("../services/movies/findAll");
+const FindOne = require("../services/movies/findOne");
 
 const { renderPromiseAsJson } = require("../utils/helper");
 
@@ -21,10 +22,18 @@ module.exports = {
 
     renderPromiseAsJson(promise, res);
   },
-  find: (req, res) => {
+  findAll: (req, res) => {
+    const { quantity } = req.params;
+
+    const service = new FindAll();
+    const promise = service.run({ quantity });
+
+    renderPromiseAsJson(promise, res);
+  },
+  findOne: (req, res) => {
     const { id } = req.params;
 
-    const service = new Find();
+    const service = new FindOne();
     const promise = service.run({ id });
 
     renderPromiseAsJson(promise, res);

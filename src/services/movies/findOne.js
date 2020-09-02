@@ -4,7 +4,7 @@ Livr.Validator.defaultAutoTrim(true);
 const Movie = require("../../models/movie");
 const Base = require("../base");
 
-class Find extends Base {
+class FindOne extends Base {
   async validate(data) {
     const rules = {
       id: ["required"]
@@ -33,4 +33,4 @@ class Find extends Base {
   }
 }
 
-module.exports = Find;
+module.exports = FindOne;

@@ -36,7 +36,7 @@ class Delete extends Base {
 
     console.log("[movie]", movie);
 
-    return { status: 200, data: { id } };
+    return { status: 201, data: { id } };
   }
 }
 

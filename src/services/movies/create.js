@@ -37,7 +37,7 @@ class Create extends Base {
     const newMovie = await Movie.create(data);
     const { id, title, release, format, stars } = newMovie;
 
-    return { status: 200, data: { id, title, release, format, stars } };
+    return { status: 201, data: { id, title, release, format, stars } };
   }
 }
 
