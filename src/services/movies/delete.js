@@ -7,14 +7,7 @@ const Base = require("../base");
 class Delete extends Base {
   async validate(data) {
     const rules = {
-      data: [
-        "required",
-        {
-          nested_object: {
-            id: "required"
-          }
-        }
-      ]
+      id: ["required"]
     };
 
     const validator = new Livr.Validator(rules);
@@ -23,8 +16,7 @@ class Delete extends Base {
   }
 
   async execute(cleanData) {
-    const { data } = cleanData;
-    const { id = "" } = data;
+    const { id = "" } = cleanData;
 
     const savedMovie = await Movie.findByPk(id);
 

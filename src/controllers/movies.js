@@ -15,10 +15,12 @@ module.exports = {
     renderPromiseAsJson(promise, res);
   },
   delete: (req, res) => {
-    const data = req.body;
+    const { id } = req.params;
+
+    console.log("delete 3444", id);
 
     const service = new Delete();
-    const promise = service.run({ data });
+    const promise = service.run({ id });
 
     renderPromiseAsJson(promise, res);
   },
