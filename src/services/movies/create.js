@@ -1,5 +1,6 @@
 const Livr = require("livr");
 Livr.Validator.defaultAutoTrim(true);
+const { v4: UUIDV4 } = require("uuid");
 
 const Movie = require("../../models/movie");
 const Base = require("../base");
@@ -25,19 +26,36 @@ class Create extends Base {
     return validator.validate(data);
   }
 
-  async execute(cleanData) {
-    const { data } = cleanData;
+  _clearedData(data) {
+    const { id = "", title = "", release = "", format = "", stars = "" } = data;
 
-    const savedMovie = await Movie.findOneEntity("title", data.title);
+    return {
+      id,
+      title,
+      release,
+      format,
+      stars
+    };
+  }
+
+  async execute(cleanData) {
+    const { data = {} } = cleanData;
+    const { title = "" } = data;
+
+    if (!title) {
+      return { status: 403, data: "Not valid data 123" };
+    }
+
+    const savedMovie = await Movie.findOneEntity("title", title);
 
     if (savedMovie) {
       return { status: 401, data: "This movie is already exist" };
     }
 
-    const newMovie = await Movie.create(data);
-    const { id, title, release, format, stars } = newMovie;
+    const createdMovie = await Movie.create({ id: UUIDV4(), ...data });
+    const clearedData = this._clearedData(createdMovie);
 
-    return { status: 201, data: { id, title, release, format, stars } };
+    return { status: 201, data: clearedData };
   }
 }
 

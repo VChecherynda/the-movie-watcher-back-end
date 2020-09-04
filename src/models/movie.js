@@ -13,6 +13,7 @@ Movie.schema = {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
+    unique: true,
     allowNull: false,
     defaultValue: UUIDV4()
   },

@@ -6,9 +6,8 @@ class Base {
         return this.execute(cleanData);
       })
       .catch(err => {
-        console.log("[err]", err);
         const error = this.validator.getErrors();
-        throw { status: 403, data: "Problem with data" };
+        throw { status: 403, data: "Not valid data" };
       });
   }
 }

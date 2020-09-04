@@ -17,8 +17,6 @@ module.exports = {
   delete: (req, res) => {
     const { id } = req.params;
 
-    console.log("delete 3444", id);
-
     const service = new Delete();
     const promise = service.run({ id });
 
