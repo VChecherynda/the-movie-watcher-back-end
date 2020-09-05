@@ -1,4 +1,5 @@
 const Create = require("../services/movies/create");
+const Upload = require("../services/movies/upload");
 const Delete = require("../services/movies/delete");
 const FindAll = require("../services/movies/findAll");
 const FindOne = require("../services/movies/findOne");
@@ -11,6 +12,14 @@ module.exports = {
 
     const service = new Create();
     const promise = service.run({ data });
+
+    renderPromiseAsJson(promise, res);
+  },
+  upload: (req, res) => {
+    const file = req.files;
+
+    const service = new Upload();
+    const promise = service.run({ file });
 
     renderPromiseAsJson(promise, res);
   },

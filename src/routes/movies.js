@@ -4,6 +4,7 @@ const router = express.Router();
 const controllerMovies = require("../controllers/movies");
 
 router.post("/create", controllerMovies.create);
+router.post("/upload", controllerMovies.upload);
 router.delete("/delete/:id", controllerMovies.delete);
 router.get("/find", controllerMovies.findAll);
 router.get("/find/:id", controllerMovies.findOne);

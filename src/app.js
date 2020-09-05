@@ -3,6 +3,7 @@ dotenv.config();
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const upload = require("express-fileupload");
 
 const models = require("./models");
 const sequelize = require("./utils/database");
@@ -17,6 +18,7 @@ app.use(
     extended: true
   })
 );
+app.use(upload());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

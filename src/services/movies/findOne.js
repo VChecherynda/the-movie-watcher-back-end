@@ -15,6 +15,18 @@ class FindOne extends Base {
     return validator.validate(data);
   }
 
+  _clearedData(data) {
+    const { id = "", title = "", release = "", format = "", stars = "" } = data;
+
+    return {
+      id,
+      title,
+      release,
+      format,
+      stars
+    };
+  }
+
   async execute(cleanData) {
     const { id = "" } = cleanData;
 
@@ -24,9 +36,9 @@ class FindOne extends Base {
       return { status: 404, data: "There no such movie" };
     }
 
-    const { title, release, format, stars } = savedMovie;
+    const clearedData = this._clearedData(savedMovie);
 
-    return { status: 200, data: { id, title, release, format, stars } };
+    return { status: 200, data: clearedData };
   }
 }
 
