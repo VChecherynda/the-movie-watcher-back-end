@@ -10,7 +10,7 @@ const replaceAllMatchingWords = ({ string, currentWord, newWord }) => {
 };
 
 const serializeString = data => {
-  const result = data.toLowerCase().split(/\n\s*\n/);
+  const result = data.split(/\n\s*\n/);
 
   return result.reduce((acc, item) => {
     if (typeof item === "string") {
@@ -21,7 +21,7 @@ const serializeString = data => {
         const clearedItem = item.replace(" ", "");
         const pair = clearedItem.split(":");
 
-        const key = pair[0] || "";
+        const key = pair[0].toLowerCase() || "";
         const value = pair[1] || "";
 
         if (key) {

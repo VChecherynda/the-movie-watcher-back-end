@@ -1,6 +1,5 @@
 const Livr = require("livr");
 Livr.Validator.defaultAutoTrim(true);
-const { v4: UUIDV4 } = require("uuid");
 
 const {
   replaceAllMatchingWords,
@@ -34,9 +33,15 @@ class Upload extends Base {
 
     const serializedData = serializeString(txtStringReplaced);
 
-    await Movie.bulkCreate(serializedData);
+    try {
+      await Movie.bulkCreate(serializedData);
+    } catch (err) {
+      return { status: 403, data: "Not expectable document format" };
+    }
 
-    const allMovies = await Movie.findAll();
+    const allMovies = await Movie.findAll({
+      order: [["title", "DESC"]]
+    });
 
     return { status: 200, data: allMovies };
   }

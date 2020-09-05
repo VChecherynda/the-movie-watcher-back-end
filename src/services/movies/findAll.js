@@ -14,7 +14,9 @@ class FindAll extends Base {
   }
 
   async execute() {
-    const allMovies = await Movie.findAll();
+    const allMovies = await Movie.findAll({
+      order: [["title", "ASC"]]
+    });
 
     if (allMovies) {
       return { status: 200, data: allMovies };
