@@ -40,7 +40,7 @@ class Upload extends Base {
     }
 
     const allMovies = await Movie.findAll({
-      order: [["title", "DESC"]]
+      order: [["title", "ASC"]]
     });
 
     return { status: 200, data: allMovies };
