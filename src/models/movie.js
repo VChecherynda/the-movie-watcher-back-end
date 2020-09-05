@@ -1,5 +1,5 @@
-const { DataTypes } = require("sequelize");
-const { v4: UUIDV4 } = require("uuid");
+const { DataTypes, UUIDV4 } = require("sequelize");
+// const { v4: UUIDV4 } = require("uuid");
 
 const Base = require("./base");
 
@@ -11,11 +11,11 @@ Movie.options = {
 
 Movie.schema = {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     primaryKey: true,
     unique: true,
     allowNull: false,
-    defaultValue: UUIDV4()
+    defaultValue: UUIDV4
   },
   title: { type: DataTypes.STRING, allowNull: false },
   release: { type: DataTypes.STRING, allowNull: false },

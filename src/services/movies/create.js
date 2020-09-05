@@ -52,7 +52,7 @@ class Create extends Base {
       return { status: 401, data: "This movie is already exist" };
     }
 
-    const createdMovie = await Movie.create({ id: UUIDV4(), ...data });
+    const createdMovie = await Movie.create(data);
     const clearedData = this._clearedData(createdMovie);
 
     return { status: 201, data: clearedData };

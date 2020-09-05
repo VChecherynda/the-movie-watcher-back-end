@@ -6,7 +6,7 @@ const renderPromiseAsJson = (promise, res) =>
 const isNull = x => (x === null ? [] : x);
 
 const replaceAllMatchingWords = ({ string, currentWord, newWord }) => {
-  return string.replace(new RegExp(currentWord, "g"), newWord);
+  return string.trim().replace(new RegExp(currentWord, "g"), newWord);
 };
 
 const serializeString = data => {

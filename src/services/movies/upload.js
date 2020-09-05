@@ -34,22 +34,11 @@ class Upload extends Base {
 
     const serializedData = serializeString(txtStringReplaced);
 
-    serializedData.forEach(async item => {
-      const { title } = item;
-
-      if (title) {
-        const savedMovie = await Movie.findOneEntity("title", title);
-        if (savedMovie) {
-          return;
-        }
-
-        await Movie.create({ id: UUIDV4(), ...item });
-      }
-    });
+    await Movie.bulkCreate(serializedData);
 
     const allMovies = await Movie.findAll();
 
-    return { status: 201, data: allMovies };
+    return { status: 200, data: allMovies };
   }
 }
 
