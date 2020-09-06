@@ -1,5 +1,4 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
-// const { v4: UUIDV4 } = require("uuid");
 
 const Base = require("./base");
 
