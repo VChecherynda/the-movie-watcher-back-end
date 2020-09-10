@@ -40,13 +40,22 @@ class Create extends Base {
 
   async execute(cleanData) {
     const { data = {} } = cleanData;
-    const { title = "" } = data;
+    const { title = "", stars = "", release = "", format = "" } = data;
 
     if (!title) {
       return { status: 403, data: "Not valid data 123" };
     }
 
-    const savedMovie = await Movie.findOneEntity("title", title);
+    const savedMovie = await Movie.findOne({
+      where: {
+        title,
+        stars,
+        release,
+        format
+      }
+    });
+
+    console.log();
 
     if (savedMovie) {
       return { status: 401, data: "This movie is already exist" };
