@@ -32,8 +32,10 @@ module.exports = {
     renderPromiseAsJson(promise, res);
   },
   findAll: (req, res) => {
+    const { page = 1 } = req.params;
+
     const service = new FindAll();
-    const promise = service.run();
+    const promise = service.run({ page });
 
     renderPromiseAsJson(promise, res);
   },
