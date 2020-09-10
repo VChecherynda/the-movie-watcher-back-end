@@ -34,16 +34,25 @@ class Upload extends Base {
     const serializedData = serializeString(txtStringReplaced);
 
     try {
-      await Movie.bulkCreate(serializedData);
+      await Promise.all(
+        serializedData.map(async element => {
+          const { title, release, format, stars } = element;
+
+          await Movie.findOrCreate({
+            where: { title, release, format, stars },
+            defaults: { title, release, format, stars }
+          });
+        })
+      );
+
+      const allMovies = await Movie.findAll({
+        order: [["title", "ASC"]]
+      });
+
+      return { status: 200, data: allMovies };
     } catch (err) {
       return { status: 403, data: "Not expectable document format" };
     }
-
-    const allMovies = await Movie.findAll({
-      order: [["title", "ASC"]]
-    });
-
-    return { status: 200, data: allMovies };
   }
 }
 

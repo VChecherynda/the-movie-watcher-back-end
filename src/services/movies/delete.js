@@ -26,8 +26,6 @@ class Delete extends Base {
 
     const movie = await savedMovie.destroy();
 
-    console.log("[movie]", movie);
-
     return { status: 201, data: { id } };
   }
 }
