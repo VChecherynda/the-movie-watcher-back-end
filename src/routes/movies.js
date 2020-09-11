@@ -7,6 +7,6 @@ router.post("/create", controllerMovies.create);
 router.post("/upload", controllerMovies.upload);
 router.delete("/delete/:id", controllerMovies.delete);
 router.get("/find/:page", controllerMovies.findAll);
-router.get("/find/:id", controllerMovies.findOne);
+router.get("/find-one/:id", controllerMovies.findOne);
 
 module.exports = router;
