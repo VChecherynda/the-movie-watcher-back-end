@@ -27,18 +27,19 @@ class FindAll extends Base {
     });
 
     const { count: total, rows: items } = allMovies;
+    const currentPage = Number(page);
+    const lastPage = Math.ceil(total / ITEMS_PER_PAGE);
+    const nextPage = Number(page) + 1 > lastPage ? lastPage : Number(page) + 1;
+    const prevPage = Number(page - 1) < 1 ? 1 : Number(page);
     const hasNextPage = ITEMS_PER_PAGE * page < total;
     const hasPreviousPage = page > 1;
-    const nextPage = page + 1;
-    const prevPage = page - 1;
-    const lastPage = Math.ceil(total / ITEMS_PER_PAGE);
 
     if (allMovies) {
       return {
         status: 200,
         data: {
-          total,
           items,
+          currentPage,
           hasNextPage,
           hasPreviousPage,
           nextPage,
