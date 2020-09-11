@@ -30,7 +30,7 @@ class FindAll extends Base {
     const currentPage = Number(page);
     const lastPage = Math.ceil(total / ITEMS_PER_PAGE);
     const nextPage = Number(page) + 1 > lastPage ? lastPage : Number(page) + 1;
-    const prevPage = Number(page - 1) < 1 ? 1 : Number(page);
+    const prevPage = Number(page) - 1 < 1 ? 1 : Number(page) - 1;
     const hasNextPage = ITEMS_PER_PAGE * page < total;
     const hasPreviousPage = page > 1;
 
