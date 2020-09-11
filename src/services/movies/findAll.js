@@ -38,6 +38,7 @@ class FindAll extends Base {
       return {
         status: 200,
         data: {
+          total,
           items,
           currentPage,
           hasNextPage,

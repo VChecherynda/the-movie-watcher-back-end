@@ -45,11 +45,7 @@ class Upload extends Base {
         })
       );
 
-      const allMovies = await Movie.findAll({
-        order: [["title", "ASC"]]
-      });
-
-      return { status: 200, data: allMovies };
+      return { status: 200, data: "Movies were successfully uploaded" };
     } catch (err) {
       return { status: 403, data: "Not expectable document format" };
     }
